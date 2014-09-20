@@ -1,0 +1,28 @@
+#! /bin/sh
+
+
+for i in $(seq 1 20);
+do
+    sv check /service/ejabberd | grep -q 'ok: run:'
+    if [ $? -eq 0 ]
+    then
+	for j in $(seq 1 30);
+	do
+	    if [ -f /var/lib/ejabberd/spool/passwd.DCD ]
+	    then
+	    ls -lt -c /var/lib/ejabberd/spool > /tmp/spoolls-$i$j-last
+		sleep 5
+		/etc/e-smith/events/actions/ejabberd-load-tables
+		exit 0
+	    fi
+	    sleep 2
+	done
+	echo seems service ejabberd started with errors
+	exit 1
+    fi
+    echo waiting for service ejabberd to start
+    sleep 1
+done
+echo ejabberd failed to start
+exit 1
+

@@ -1,0 +1,78 @@
+{
+
+use esmith::ConfigDB;
+
+my $default = $ejabberd{'FilterDefault'} || 'allow';
+my $rule = ($default eq 'allow' ) ? 'deny' : 'allow';
+my $ejdb = esmith::ConfigDB->open('im') ||
+           esmith::ConfigDB->create('im');
+my $except = $ejdb->get('exception') || 
+             $ejdb->new_record ('exception', { type => 'list' });
+my %rules = $except->props;
+my @admins = split (/[,;]/, ($ejabberd{'AdminUsers'} || ''));
+my $domain = $ejabberd{'Domain'} || "$DomainName";
+my $acl = '';
+
+while (($parameter,$value) = each(%rules)) {
+    next if ($parameter eq "type");
+
+    if ($value eq "User") {
+        my ($user,$server) = split (/\@/,$parameter);
+        # Spectrum expects \\40 instead of %
+        $user =~ s/%/\\\\40/;
+        $acl .= "{acl, except, {user, \"$user\", \"$server\"}}.\n";
+    }
+}
+
+# Admins are not restricted
+$acl .= "{acl, valid_users, {user, \"admin\", \"$domain\"}}.\n";
+foreach my $admin (@admins){
+    $acl .= "{acl, valid_users, {user, \"$admin\", \"$domain\"}}.\n";
+}
+# Allow gateways and other components
+$acl .= "{acl, valid_users, {user, \"\", \"$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"msn.$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"irc.$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"conference.$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"vjud.$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"pubsub.$domain\"}}.\n";
+$acl .= "{acl, valid_users, {user, \"\", \"echo.$domain\"}}.\n";
+
+$OUT .=<<"EOF";
+
+$acl
+
+{access, mod_filter, [
+  {allow, valid_users},
+  {$rule, except},
+  {filter, all}
+]}.
+
+{access, mod_filter_presence, [
+  {allow, valid_users},
+  {$rule, except},
+  {filter, all}
+]}.
+
+{access, mod_filter_message, [
+  {allow, valid_users},
+  {$rule, except},
+  {filter, all}
+]}.
+
+{access, mod_filter_iq, [
+  {allow, valid_users},
+  {$rule, except},
+  {filter, all}
+]}.
+
+{access, filter, [
+  {allow, valid_users},
+  {$rule, except},
+  {$default, all}
+]}.
+
+
+
+EOF
+}

@@ -1,0 +1,106 @@
+<lexicon lang="fr">
+    <entry>
+        <base>FORM_TITLE</base>
+        <trans>Paramètres de la messagerie instantanée</trans>
+    </entry>	
+    <entry>
+        <base>PAGE_DESCRIPTION</base>
+        <trans>Cette page vous permet de configurer le service de messagerie instantanée de votre serveur.</trans>
+    </entry>
+    <entry>
+        <base>Configuration</base>
+        <trans>Configuration</trans>
+    </entry>
+    <entry>
+        <base>INSTANT_MESSAGING</base>
+        <trans>Messagerie Instantanée</trans>
+    </entry>
+    <entry>
+        <base>NO_ACCESS</base>
+        <trans>Aucun accès</trans>
+    </entry>
+    <entry>
+        <base>PRIVATE</base>
+        <trans>Autoriser l'accès uniquement depuis les réseaux locaux.</trans>
+    </entry>
+    <entry>
+        <base>PUBLIC</base>
+        <trans>Autoriser l'accès publique (tout Internet)</trans>
+    </entry>
+    <entry>
+        <base>DESC_ACCESS</base>
+        <trans>Vous pouvez contrôler l'accès à vos services de messagerie.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_ACCESS</base>
+        <trans>Accès aux services de messagerie instantanée</trans>
+    </entry>
+    <entry>
+        <base>DESC_ALLOWED_GROUPS</base>
+        <trans>Vous pouvez restreindre l'accès aux services de messagerie instantanée à une liste de groupes. Si au moins un groupe est coché, seuls les membres du/des groupe(s) sélectionnés pourront utiliser la messagerie instantanée. Si aucun groupe n'est coché, alors tous les utilisateurs pourront l'utiliser.</trans>
+    </entry>
+    <entry>
+        <base>ALLOWED_GROUPS</base>
+        <trans>Groupes autorisés</trans>
+    </entry>
+    <entry>
+        <base>DESCRIPTION</base>
+        <trans>Description</trans>
+    </entry>
+    <entry>
+        <base>ALLOWED_OR_NOT</base>
+        <trans>Autorisé ?</trans>
+    </entry>
+    <entry>
+        <base>LABEL_SHARED_ROSTER</base>
+        <trans>Contacts automatiques</trans>
+    </entry>
+    <entry>
+        <base>DESC_SHARED_ROSTER</base>
+        <trans>Si cette fonction est activée, les utilisateurs du système seront automatiquement ajoutés en tant que contact</trans>
+    </entry>
+    <entry>
+        <base>DESC_GATEWAYS</base>
+        <trans>Vous pouvez activer des passerelles vers d'autres systèmes de messagerie instantanée. Après s'être enregistré auprès d'une passerelle, les utilisateurs pourront communiquer avec leur contacts des ces réseaux.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_GATEWAYS</base>
+        <trans>Passerelles</trans>
+    </entry>
+    <entry>
+        <base>PROTOCOL</base>
+        <trans>Protocole</trans>
+    </entry>
+    <entry>
+        <base>STATUS</base>
+        <trans>Statut</trans>
+    </entry>
+    <entry>
+        <base>DESC_FILTER_MODE</base>
+        <trans>Par défaut, les utilisateurs peuvent communiquer librement avec leurs contacts extérieurs. Vous pouvez filtrer les communications vers l'extérieur. En choisissant "Liste noire", toutes les communications vers l'extérieur seront autorisées, sauf pour les contacts dans la liste d'exception. Si au contraire vous choisissez "Liste blanche", seules les communications extérieures avec ces contacts seront autorisées.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_FILTER_MODE</base>
+        <trans>Mode de filtrage</trans>
+    </entry>
+    <entry>
+        <base>WHITE_LIST</base>
+        <trans>Liste blanche</trans>
+    </entry>
+    <entry>
+        <base>BLACK_LIST</base>
+        <trans>Liste noire</trans>
+    </entry>
+    <entry>
+        <base>DESC_EXCEPTION_LIST</base>
+        <trans>Entrez ici une liste d'exception (qui sera utilisée soit en liste blanche, soit en liste noire). Vous devez entrez une adresse par ligne.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_EXCEPTION_LIST</base>
+        <trans>Liste d'exceptions</trans>
+    </entry>
+    <entry>
+        <base>SAVE</base>
+        <trans>Enregistrer</trans>
+    </entry>
+</lexicon>

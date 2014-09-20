@@ -1,0 +1,9 @@
+{
+    $OUT =<<'HERE';
+% Host name:
+HERE
+    $OUT .= '{hosts, ["';
+    $OUT .= ${ejabberd}{Domain};
+    $OUT .= '"]}.';
+    $OUT .= "\n\n";
+}

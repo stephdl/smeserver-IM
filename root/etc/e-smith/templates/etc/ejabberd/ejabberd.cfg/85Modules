@@ -1,0 +1,39 @@
+
+% Used modules:
+\{modules,
+ [
+
+{
+    $OUT =<<'HERE';
+  {mod_roster_odbc,     []}
+  ,{mod_privacy_odbc,    []}
+  ,{mod_adhoc,      []}
+  ,{mod_configure,  []} % Depends on mod_adhoc
+  ,{mod_configure2, []}
+  ,{mod_disco,      []}
+  ,{mod_stats,      []}
+  ,{mod_caps,      []}
+  ,{mod_offline_odbc,    []}
+  ,{mod_announce_odbc,   [{access, announce}]} % Depends on mod_adhoc
+  ,{mod_private_odbc,    []}
+  ,{mod_irc_odbc,        []}
+  ,{mod_muc,        [{access, muc}, {access_create, muc}, {access_admin, muc_admin}]}
+  ,{mod_muc_log,    []}
+  ,{mod_shared_roster, []}
+  ,{mod_pubsub_odbc,     [{access_createnode, pubsub_createnode},
+                         {plugins, ["flat_odbc", "hometree_odbc", "pep_odbc"]}]}
+  ,{mod_time,       []}
+  ,{mod_last_odbc,       []}
+  ,{mod_version,    []}
+  ,{mod_http_bind,    []}
+HERE
+    if (-e '/usr/lib/ejabberd/ebin/mod_admin_extra.beam' || -e '/usr/lib64/ejabberd/ebin/mod_admin_extra.beam')
+        { $OUT .= '  ,{mod_admin_extra,    []}'; }
+    else
+        { $OUT .= '  ,{mod_ctlextra,    []}'; }
+    $OUT .= "\n";
+    $OUT .= '  ,{mod_echo,       [{host, "echo.';
+    $OUT .= ${DomainName};
+    $OUT .= '"}]}';
+}
+

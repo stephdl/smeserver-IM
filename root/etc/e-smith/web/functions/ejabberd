@@ -1,0 +1,121 @@
+#!/usr/bin/perl -wT
+
+#----------------------------------------------------------------------
+# heading     : Configuration 
+# description : INSTANT_MESSAGING
+# navigation  : 6000 6950
+#----------------------------------------------------------------------
+#----------------------------------------------------------------------
+# copyright (C) 2007 Free-EOS 
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+# 		
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 		
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+# 
+#----------------------------------------------------------------------
+
+
+
+use strict;
+use esmith::FormMagick::Panel::ejabberd;
+my $f = esmith::FormMagick::Panel::ejabberd->new();
+$f->display();
+
+
+
+
+=head1 TESTING
+
+
+=begin testing
+
+use esmith::FormMagick::Tester;
+use esmith::TestUtils;
+use esmith::ConfigDB;
+
+my $panel = 'hwinfo';
+my $panel_path = "/etc/e-smith/web/functions/".$panel;
+my $ua = esmith::FormMagick::Tester->new();
+
+
+is  (mode($panel_path), '4750',              "Check permissions on script");
+my @stat = stat($panel_path);
+is  (getpwuid($stat[4]), 'root', "File is owned by root");
+is  (getgrgid($stat[5]), 'admin', "File is owned by group admin");
+ok  ($ua->get_panel($panel),            "ABOUT TO RUN L10N TESTS");
+is  ($ua->{status}, 200,                "200 OK");
+like($ua->{content}, qr/FORM_TITLE/,    "Saw untranslated form title");
+ok  ($ua->set_language("en"),           "Set language to English");
+ok  ($ua->get_panel($panel),            "Get panel");
+is  ($ua->{status}, 200,                "200 OK");
+
+=end testing
+
+=cut
+
+__DATA__
+<form title="FORM_TITLE" header="/etc/e-smith/web/common/head.tmpl" footer="/etc/e-smith/web/common/foot.tmpl">
+    <page name="First"   pre-event="print_status_message()" post-event="change_settings()">
+    <description>PAGE_DESCRIPTION</description>
+
+        <field type="select" 
+            id="access" 
+            options=" 'off' => 'NO_ACCESS', 'private' => 'PRIVATE', 'public' => 'PUBLIC'"
+            value="get_ejabberd_access()">
+            <description>DESC_ACCESS</description>
+            <label>LABEL_ACCESS</label>
+        </field>
+
+        <field type="literal"
+            id="groups_desc"
+            value="">
+            <description>DESC_ALLOWED_GROUPS</description>
+        </field>
+
+        <subroutine src="print_allowed_groups()"/>
+
+        <field type="select" 
+            id="shared_roster" 
+            options=" 'enabled' => 'ENABLED', 'disabled' => 'DISABLED'"
+            value="get_prop('ejabberd', 'SharedRoster')">
+            <label>LABEL_SHARED_ROSTER</label>
+            <description>DESC_SHARED_ROSTER</description>
+        </field>
+
+        <field type="literal"
+            id="first_desc"
+            value="">
+            <description>DESC_GATEWAYS</description>
+        </field>
+
+        <subroutine src="print_gateways()"/>
+
+        <field type="select" 
+            id="default_filter" 
+            options=" 'allow' => 'BLACK_LIST', 'deny' => 'WHITE_LIST'"
+            value="get_prop('ejabberd', 'FilterDefault')">
+            <label>LABEL_FILTER_MODE</label>
+            <description>DESC_FILTER_MODE</description>
+        </field>
+
+        <field type="textarea" id="exception_list" cols="40" rows="15"
+            value="get_exception_list()">
+            <description>DESC_EXCEPTION_LIST</description>
+            <label>LABEL_EXCEPTION_LIST</label>
+        </field>
+
+	<subroutine src="print_button('SAVE')" />
+
+  </page>
+
+</form>

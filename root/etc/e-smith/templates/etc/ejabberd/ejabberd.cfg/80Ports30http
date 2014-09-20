@@ -1,0 +1,17 @@
+
+{
+$OUT .= '       % http_bind interface, restrict it to 127.0.0.1, external access is handled by'."\n".
+        '       % ProxyPass directives in apache'."\n";
+ 
+$OUT .= '       ';
+$OUT .= '%' unless (((${'ejabberd'}{'HTTPBind'} || 'disabled') || 
+                    (${'ejabberd'}{'HTTPPoll'} || 'disabled')) ||
+                    (${'ejabberd'}{'WebAdmin'} || 'disabled')
+                   eq 'enabled');
+$OUT .= ',{5280, ejabberd_http,    [ ';
+$OUT .= 'http_bind, ' if ((${'ejabberd'}{'HTTPBind'} || 'disabled') eq 'enabled');
+$OUT .= 'http_poll, ' if ((${'ejabberd'}{'HTTPPoll'} || 'disabled') eq 'enabled');
+$OUT .= 'web_admin, ' if ((${'ejabberd'}{'WebAdmin'} || 'disabled') eq 'enabled');
+$OUT .= '{ip, {127, 0, 0, 1}} ]}'."\n";
+}
+

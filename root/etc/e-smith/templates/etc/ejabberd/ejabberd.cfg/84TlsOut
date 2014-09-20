@@ -1,0 +1,3 @@
+% Use TLS for s2s if available
+\{s2s_use_starttls, true\}.
+\{s2s_certfile, "/var/service/ejabberd/ssl/cert.pem"\}.

@@ -1,0 +1,10 @@
+{
+
+if (($ejabberd{'LogChat'} || 'disabled') eq 'enabled'){
+    my $format = $ejabberd{'LogChatFormat'} || 'text';
+    $OUT .=<<"HERE";
+  ,{mod_log_chat,  [{path, "/var/log/ejabberd/chat"}, {format, $format}]}
+HERE
+}
+
+}

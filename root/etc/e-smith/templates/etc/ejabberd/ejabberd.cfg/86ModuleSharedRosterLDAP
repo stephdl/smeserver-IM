@@ -1,0 +1,34 @@
+{
+
+if (($ejabberd{'SharedRoster'} || 'disabled') eq 'enabled'){
+
+    my $filter = '';
+    if (scalar(@groups) == 0){
+        $filter = "(objectClass=mailboxRelatedObject)";
+    }
+    elsif (scalar(@groups) == 1){
+        $filter = "(cn=$groups[0])";
+    }
+    elsif (scalar(@groups) gt 1){
+        $filter = '(|';
+        $filter .= "(cn=$_)" foreach (@groups);
+        $filter .= ')';
+    }
+
+    $OUT .=<<"HERE";
+  ,{mod_shared_roster_ldap, [
+    {ldap_base, "$base"},
+    {ldap_rfilter, "$filter"},
+    {ldap_filter, "(objectClass=*)"},
+    {ldap_ufilter, "(uid=%u)"},
+    {ldap_groupattr, "cn"},
+    {ldap_groupdesc, "description"},
+    {ldap_memberattr, "memberUid"},
+    {ldap_memberattr_format,"%u"},
+    {ldap_useruid, "uid"},
+    {ldap_userdesc, "cn"}
+  ]}
+HERE
+
+}
+}

@@ -1,0 +1,6 @@
+{
+    $OUT =<<'HERE';
+% Allow access only for local users:
+{access, local, [{allow, local}]}.
+HERE
+}

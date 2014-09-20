@@ -1,0 +1,4 @@
+
+% mysql database access
+\{odbc_server, \{mysql, "localhost", "{"$ejabberd{DbName}"}", "{"$ejabberd{DbUser}"}", "{"$ejabberd{DbPassword}"}"\}\}.
+

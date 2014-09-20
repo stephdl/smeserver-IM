@@ -1,0 +1,65 @@
+#!/bin/sh -x
+#---------------------------------------
+# copyright (C) 2008 Jean-Paul Leclere
+#---------------------------------------
+
+exec 2>&1
+
+./control/1
+
+NODE=ejabberd
+HOST=`hostname | cut -d. -f1`
+
+EMU=beam
+export EMU
+
+LD_LIBRARY_PATH=/usr/lib/:/lib
+export LD_LIBRARY_PATH
+DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH
+
+# Define ejabberd environment
+ERL_MAX_PORTS=32000
+export ERL_MAX_PORTS
+ERL_INETRC_PATH=/etc/ejabberd/inetrc
+export ERL_INETRC_PATH
+SASL_LOG_PATH=/var/log/ejabberd/sasl.log
+export SASL_LOG_PATH
+EJABBERD_LOG_PATH=/var/log/ejabberd/ejabberd.log
+export EJABBERD_LOG_PATH
+if [ -d /usr/lib64/ejabberd/priv/lib ]; then
+    EJABBERD_SO_PATH=/usr/lib64/ejabberd/priv/lib
+else
+    EJABBERD_SO_PATH=/usr/lib/ejabberd/priv/lib
+fi
+export EJABBERD_SO_PATH
+EJABBERD_CONFIG_PATH=/etc/ejabberd/ejabberd.cfg
+export EJABBERD_CONFIG_PATH
+if [ -d /usr/lib64/ejabberd/priv/msgs ]; then
+    EJABBERD_MSGS_PATH=/usr/lib64/ejabberd/priv/msgs
+else
+    EJABBERD_MSGS_PATH=/usr/lib/ejabberd/priv/msgs
+fi
+export EJABBERD_MSGS_PATH
+EJABBERD_DB=/var/lib/ejabberd/spool
+export EJABBERD_DB
+HOME=/var/lib/ejabberd
+export HOME
+if [ -d /usr/lib64/ejabberd/ebin ]; then
+    EBIN=/usr/lib64/ejabberd/ebin
+else
+    EBIN=/usr/lib/ejabberd/ebin
+fi
+
+exec /usr/local/bin/setuidgid ejabberd \
+    erl -pa $EBIN \
+      -noinput \
+      -smp auto +K false +P 250000 \
+      -sname ejabberd \
+      -mnesia dir \"$EJABBERD_DB\" \
+      -kernel inetrc \"/$ERL_INETRC_PATH\" \
+      -s ejabberd \
+      -ejabberd config \"$EJABBERD_CONFIG_PATH\" \
+                log_path \"$EJABBERD_LOG_PATH\" \
+      -sasl sasl_error_logger \{file,\"$SASL_LOG_PATH\"\} 
+

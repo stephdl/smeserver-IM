@@ -1,0 +1,82 @@
+<lexicon lang="fr">
+    <entry>
+        <base>FORM_TITLE</base>
+        <trans>Instant messaging configuration</trans>
+    </entry>	
+    <entry>
+        <base>DESCRIPTION</base>
+        <trans>This panel lets you configure your instant messaging service.</trans>
+    </entry>
+    <entry>
+        <base>Configuration</base>
+        <trans>Configuration</trans>
+    </entry>
+    <entry>
+        <base>INSTANT_MESSAGING</base>
+        <trans>Instant Messaging</trans>
+    </entry>
+    <entry>
+        <base>NO_ACCESS</base>
+        <trans>No access</trans>
+    </entry>
+    <entry>
+        <base>PRIVATE</base>
+        <trans>Allow access only from local networks</trans>
+    </entry>
+    <entry>
+        <base>PUBLIC</base>
+        <trans>Allow public access (entire Internet)</trans>
+    </entry>
+    <entry>
+        <base>DESC_ACCESS</base>
+        <trans>You can control access to your instant messaging service.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_ACCESS</base>
+        <trans>Instant messaging services access</trans>
+    </entry>
+    <entry>
+        <base>DESC_GATEWAYS</base>
+        <trans>You can enable gateways for other instant messaging services. Once registered on a gateway, users will be able to communicate with their contact of this network.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_GATEWAYS</base>
+        <trans>Gateways</trans>
+    </entry>
+    <entry>
+        <base>PROTOCOL</base>
+        <trans>Protocol</trans>
+    </entry>
+    <entry>
+        <base>STATUS</base>
+        <trans>Status</trans>
+    </entry>
+    <entry>
+        <base>DESC_FILTER_MODE</base>
+        <trans>The default is to let users comunicate with external contacts. You can filter outside communications. If you choose "Black list", all communication with the outside will be allowed, except for contacts of the exception list. If you choose "White list", only the communications with contacts in the exception list will be allowed.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_FILTER_MODE</base>
+        <trans>Filter mode</trans>
+    </entry>
+    <entry>
+        <base>WHITE_LIST</base>
+        <trans>White list</trans>
+    </entry>
+    <entry>
+        <base>BLACK_LIST</base>
+        <trans>Black list</trans>
+    </entry>
+    <entry>
+        <base>DESC_EXCEPTION_LIST</base>
+        <trans>Enter here a exception list (which will be used either as a white list, or a black list). Enter one contact per line.</trans>
+    </entry>
+    <entry>
+        <base>LABEL_EXCEPTION_LIST</base>
+        <trans>Exception list</trans>
+    </entry>
+    <entry>
+        <base>SAVE</base>
+        <trans>Enregistrer</trans>
+    </entry>
+</lexicon>

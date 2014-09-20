@@ -1,0 +1,7 @@
+{
+    $OUT =<<'HERE';
+% Local Variables:
+% mode: erlang
+% End:
+HERE
+}

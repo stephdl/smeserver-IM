@@ -1,0 +1,30 @@
+{
+
+# Set MySQL password
+my $rec = $DB->get('ejabberd') || $DB->new_record('ejabberd', { type => 'service' });
+my $pw = $rec->prop('DbPassword');
+
+if (not $pw){
+    $pw = `/usr/bin/openssl rand -base64 60 | tr -c -d '[:graph:]'`;
+    chomp($pw);
+    $rec->set_prop('DbPassword', $pw);
+}
+
+# Make sure mysql is enabled, InnoDB is also needed
+# and LocalNetworkingOnly need to be set to no
+my $my = $DB->get('mysqld') || $DB->new_record("mysqld", { type => "service", status => "enabled" });
+
+if ( ($my->prop('status') || 'disabled') ne 'enable'){
+    $DB->set_prop('mysqld', 'status', 'enabled');
+}
+
+if ( ($my->prop('InnoDB') || 'disabled') ne 'enable'){
+    $DB->set_prop('mysqld', 'InnoDB', 'enabled');
+}
+
+if ( ($my->prop('LocalNetworkingOnly') || 'yes') ne 'no'){
+    $DB->set_prop('mysqld', 'LocalNetworkingOnly', 'no');
+}
+
+}
+

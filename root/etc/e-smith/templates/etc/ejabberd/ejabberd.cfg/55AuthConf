@@ -1,0 +1,32 @@
+{
+
+use esmith::util;
+our $base = esmith::util::ldapBase ($DomainName);
+
+    $OUT =<<"HERE";
+
+% Use pam for authentication (to get pam_cas support)
+% LDAP for everything else
+{auth_method, pam}.
+{ldap_servers, ["localhost"]}.
+{ldap_base, "ou=Users,$base"}.
+HERE
+
+# If AllowedGroups prop is set, build a LDAP filter
+# based on the posixMemberOf attribute
+# (Only available on iPasserelle)
+
+our @groups = split(/[;,]/, ($ejabberd{'AllowedGroups'} || ''));
+our $groupFilter = '';
+if (scalar(@groups) == 1){
+    $groupFilter = "(posixMemberOf=$groups[0])";
+}
+elsif (scalar(@groups) gt 1){
+    $groupFilter = '(|';
+    $groupFilter .= "(posixMemberOf=$_)" foreach (@groups);
+    $groupFilter .= ')';
+}
+
+$OUT .= ($groupFilter eq '') ? '' : '{ldap_filter, "' . $groupFilter . '"}.';
+
+}

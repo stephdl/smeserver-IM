@@ -1,0 +1,17 @@
+% Local users
+{
+use esmith::AccountsDB;
+my $a = esmith::AccountsDB->open_ro();
+my $users;
+foreach $u ($a->activeUsers()) {
+    $users .= ("\^" . $u->key() . '$|');
+}
+if (defined $users) {	
+    chop $users;
+    $OUT .= '{acl, local, {user_regexp,"';
+    $OUT .= $users;
+    $OUT .= '"}}.';
+    $OUT .= "\n";
+}
+$OUT .= "\n";
+}

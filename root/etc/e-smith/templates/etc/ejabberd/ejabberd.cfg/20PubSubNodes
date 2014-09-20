@@ -1,0 +1,7 @@
+{
+    $OUT =<<'HERE';
+% Only smeusers can create pubsub nodes
+{access, pubsub_createnode, [{allow, local}]}.
+HERE
+}
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+status=$(/sbin/e-smith/config getprop ejabberd status)
+if [ "$status" = "disabled" ]
+then
+    echo "ejabberd is disabled - no tables dumped" >&2
+    exit 0
+fi
+mkdir -p /home/e-smith/db/ejabberd
+chown ejabberd.root /home/e-smith/db/ejabberd
+/sbin/e-smith/ejabberdctl backup /home/e-smith/db/ejabberd/ejabberd.backup

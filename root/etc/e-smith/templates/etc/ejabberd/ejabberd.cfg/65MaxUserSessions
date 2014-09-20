@@ -1,0 +1,6 @@
+{
+    $OUT =<<'HERE';
+%% Define the maximum number of time a single user is allowed to connect:
+{max_user_sessions, 10}.
+HERE
+}

@@ -1,0 +1,9 @@
+% If SRV lookup fails, then port 5269 is used to communicate with remote server
+{
+
+if (($ejabberd{'S2s'} || 'enabled') eq 'enabled'){
+    $OUT .= '{outgoing_s2s_port, 5269}.';
+}
+
+}
+

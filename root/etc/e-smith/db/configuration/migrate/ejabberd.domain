@@ -1,0 +1,5 @@
+{
+    my $ejabberdrec = $DB->get('ejabberd');
+    $ejabberdrec = $DB->new_record('ejabberd', {type => 'service'}) unless $ejabberdrec;
+    $ejabberdrec->set_prop('Domain', $DB->get('DomainName')->value) unless $ejabberdrec->prop('Domain');
+}

@@ -1,0 +1,47 @@
+{
+
+my $filter = '';
+if (scalar(@groups) ge 1){
+    $filter = "(&(objectClass=inetOrgPerson)$groupFilter)";
+}
+else{
+    $filter = "(objectClass=inetOrgPerson)";
+}
+
+$OUT .=<<"HERE";
+  ,{mod_vcard_ldap, [
+    {ldap_base, "ou=Users,$base"},
+    {ldap_filter, "$filter"},
+    {ldap_vcard_map,
+    %% vcard patterns
+     [{"NICKNAME", "%u", []}, % just use user's part of JID as his nickname
+      {"GIVEN", "%s", ["givenName"]},
+      {"FAMILY", "%s", ["sn"]},
+      {"FN", "%s, %s", ["sn", "givenName"]},
+      {"MIDDLE", "%s", ["initials"]},
+      {"EMAIL", "%s", ["mail"]},
+      {"BDAY", "%s", ["birthDay"]},
+      {"ORGNAME", "%s", ["o"]},
+      {"ORGUNIT", "%s", ["ou"]},
+      {"LOCALITY", "%s", ["l"]},
+      {"STREET", "%s", ["Street"]},
+      {"PCODE", "%s", ["postalCode"]},
+      {"TEL", "%s", ["telephoneNumber"]},
+      {"ROLE", "%s", ["title"]},
+      {"PHOTO", "%s", ["jpegPhoto"]}
+     ]},
+    %% Search form
+    {ldap_search_fields,
+     [{"User", "%u"},
+      {"Name", "givenName"},
+      {"Family Name", "sn"},
+      {"Email", "mail"}]},
+    %% vCard fields to be reported
+    %% Note that JID is always returned with search results
+    {ldap_search_reported,
+     [{"Full Name", "FN"},
+      {"Nickname", "NICKNAME"}]}
+  ]}
+HERE
+
+}

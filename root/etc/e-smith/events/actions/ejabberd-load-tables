@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -f /home/e-smith/db/ejabberd/ejabberd.backup ]
+then
+    if [ ! -f /sbin/e-smith/ejabberdctl ]
+    then
+	echo "ejabberd is not installed - no tables restored" >&2
+	exit 0
+    else
+	status=$(/sbin/e-smith/config getprop ejabberd status)
+	if [ "$status" = "disabled" ]
+	then
+	    echo "ejabberd is disabled - no tables restored" >&2
+	    exit 0
+	fi
+	/sbin/e-smith/ejabberdctl restore /home/e-smith/db/ejabberd/ejabberd.backup
+    fi
+fi

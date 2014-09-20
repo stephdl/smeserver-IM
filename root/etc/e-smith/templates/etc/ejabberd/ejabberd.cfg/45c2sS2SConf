@@ -1,0 +1,22 @@
+{
+    $OUT =<<'HERE';
+% Users can use c2s connections:
+{access, c2s, [{allow, all}]}.
+
+% Set shaper with name "normal" to limit traffic speed to 1000000B/s
+{shaper, normal, {maxrate, 1000000}}.
+
+% Set shaper with name "fast" to limit traffic speed to 10000000B/s
+{shaper, fast, {maxrate, 10000000}}.
+
+% For all users except admins used "normal" shaper
+{access, c2s_shaper, [{none, admin},
+		      {normal, all}]}.
+
+% For all S2S connections used "fast" shaper
+{access, s2s_shaper, [{fast, all}]}.
+
+% Admins of this server are also admins of MUC service:
+{access, muc_admin, [{allow, admin}]}.
+HERE
+}

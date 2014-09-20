@@ -1,0 +1,191 @@
+commit 5d2754ce965b70efe23135e91d097310bf7da3c9
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Jan 31 15:38:25 2014 +0100
+
+    Spec file update
+
+commit 8010fb96b6808e507245ae55c8fa6394a8b85110
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Jan 31 15:37:23 2014 +0100
+
+    Raise trafic limit
+
+commit 19756b2e71921b61d26bcf7caf821ed9dffd6542
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Nov 13 13:08:05 2013 +0100
+
+    update the spec file
+
+commit ca5033fec558c4cb077dff4d4a40a7c8b5263ef6
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Nov 13 13:07:25 2013 +0100
+
+    x86_64 compatibility
+
+commit 0e967bfddf13edbea4ee8d1148c97ea30b857969
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Nov 13 12:12:39 2013 +0100
+
+    Update the spec file
+
+commit 20117a5ae29520ffe85da02a0f74157c0a0f6f76
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Nov 13 12:11:18 2013 +0100
+
+    Make spectrum optional
+
+commit 7ab894da392b3b05d25c381e7543e3a4af0ac202
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Nov 13 12:10:37 2013 +0100
+
+    Update spec file
+
+commit 8fbf7ca22942854290988808bf84106e80e4d9d4
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Tue Nov 12 16:40:10 2013 +0100
+
+    Adapt perl lib path for EL6
+
+commit 45bd7fca68e47ccd514b44374644aa6756649259
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Oct 17 09:06:38 2013 +0200
+
+    update spec file
+
+commit bf014c5153930285667b1d740f4c6584ce780ff4
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Oct 17 09:05:37 2013 +0200
+
+    Update the logo used for Jappix in the portal
+
+commit b99166532d9d7d997e3c82824971fe29de4ef8eb
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Jul 18 12:11:45 2013 +0200
+
+    update spec file
+
+commit d4347c54fc6da914c230c3df235376752d905ce6
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Jul 18 12:10:47 2013 +0200
+
+    Use the CaCert used by pam_cas, or fallback to the default /etc/pki/tls/certs/cacert.pem
+
+commit a282ae3dad76dfe48750d6a8de8eaadf332ecce7
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Sat May 4 17:05:56 2013 +0200
+
+    update spec file
+
+commit 38a46f37aaf162529a3e644c8a10ca9bc2836490
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Sat May 4 13:03:16 2013 +0200
+
+    Increase rate limit for both c2s and s2s
+
+commit a9ae0c4c2b08af6f11f8ffd3795f280dbe8ab9a5
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Apr 5 09:10:18 2013 +0200
+
+    update spec file
+
+commit 4df3536ec26f5ebac0bdfcb388db4006a88faa08
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Apr 4 22:12:50 2013 +0200
+
+    Fix invalid filter in mod_shared_roster_ldap
+
+commit 2087fbfc19072178f1329058f5067b57678c902f
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Apr 4 20:31:38 2013 +0200
+
+    Apply group filter on mod_vcard_ldap
+
+commit e4b10dace773c888341acc58ca35c698d0d4aef8
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Apr 4 17:58:32 2013 +0200
+
+    update spec file
+
+commit 6e0f635a85666e05811476c2a3185b2659fa7278
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Apr 4 17:57:38 2013 +0200
+
+    Spcify XMPP server name (the certificate might not be valide for the domain name alone)
+
+commit cb52966ad59fe684d5d29cfe5a211355f4a714b1
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Apr 4 17:57:05 2013 +0200
+
+    Update spec file
+
+commit cfb5b9c99cff5274cbd833535bcc1c27324e4b2c
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu Feb 21 13:03:07 2013 +0100
+
+    Add conf fragment to configure XMPP accounts on Thunderbird via MCD
+
+commit edfa31a9eb164c9e1320b11bb7071d162c3efa2a
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Nov 30 12:14:31 2012 +0100
+
+    Fix local users ACL
+
+commit 4d19103c0aa78f0140dca959944e7fa9ddd5fd88
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Sep 28 13:30:01 2012 +0200
+
+    Mise à jour du fichier spec
+
+commit e45a76aca6f3660de39e54952f958a58476ecec2
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Sep 28 12:45:43 2012 +0200
+
+    Ajout des entrées SRV pour les services xmpp-server et xmpp-client
+
+commit abfc5ae5dac71fcce68354e67bc84d74f3d8c33f
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Sep 28 12:44:27 2012 +0200
+
+    Création des tables manquantes durant les mises à jour
+
+commit 5464293b5b5577874eaa23a3354931902b4fc5f8
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu May 24 09:52:34 2012 +0200
+
+    update changelog
+
+commit f95caac4a514eafe48984122de1243d7785255cf
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu May 24 09:52:29 2012 +0200
+
+    revert mod_muc to mnesia
+
+commit 94c028292c9bb20572754901e8fee0c7b1dcb293
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed May 23 18:46:32 2012 +0200
+
+    update changelog
+
+commit 688069c291c754eb1cbeb6c75c0c821199c043a1
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed May 23 18:46:23 2012 +0200
+
+    Enable more ODBC modules available in Ejabberd 2.1.11
+
+commit 6ae2143deecbba879b1bd5017eb8884c4fd38de2
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Tue Apr 24 12:31:29 2012 +0200
+
+    create log dir /var/log/ejabberd.run
+
+commit 0841925c8e3847ac861dd1ff2c848059c7da69cb
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Mar 30 10:49:57 2012 +0200
+
+    DisplayName in LDAP Roster
+
+commit af6fdb290f8967f248670fbcfab2bb2553bbcb3e
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Mar 14 22:30:54 2012 +0100
+
+    initial import

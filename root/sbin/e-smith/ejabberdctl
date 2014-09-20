@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# ejabberdctl for SME Server
+# Author : Jean-Paul Leclere <jean-paul@leclere.org>
+# Copyright GNU GPL 2008 
+
+# define default configuration
+POLL=true
+SMP=auto
+ERL_MAX_PORTS=32000
+ERL_PROCESSES=250000
+ERL_MAX_ETS_TABLES=1400
+HOME=/var/lib/ejabberd
+
+# define default environment variables 
+NODE=ejabberd
+HOST=`hostname | cut -d. -f1`
+ERLANG_NODE=$NODE@$HOST
+
+    LD_LIBRARY_PATH="/lib/:/usr/lib/"
+    DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH
+    export DYLD_LIBRARY_PATH
+    
+# export global variables
+export HOME
+
+# common control function
+ctl()
+{
+    erl -pa /usr/lib/ejabberd/ebin -sname ejabberdctl \
+      -noinput \
+      -s ejabberd_ctl -extra $ERLANG_NODE $@
+    result=$?
+    case $result in
+    0) :;;
+    *)
+        echo ""
+        echo "Run ejabberdctl without parameters to get help"
+        echo "";;
+    esac
+    return $result
+}
+
+# allow sync calls
+wait_for_status()
+{
+    # args: status try delay
+    # return: 0 OK, 1 KO
+    timeout=$2
+    status=4
+    while [ $status -ne $1 ]; do 
+        sleep $3
+        let timeout=timeout-1
+        [ $timeout -eq 0 ] && { 
+            status=$1
+        } || {
+            ctl status > /dev/null
+            status=$?
+        }
+    done
+    [ $timeout -eq 0 ] && {
+        status=1
+	echo "ejabberd is not started"
+    } || {
+        status=0
+	echo "ejabberd is started"
+    }
+    return $status
+}
+
+# display ctl usage
+usage()
+{
+    ctl
+    exit
+}
+
+[ $# -lt 1 ] && usage
+
+case $1 in
+    start) echo "Start ejabberd through Server-Manager" ;;
+    started) wait_for_status 0 30 2;; # wait 30x2s before timeout
+    stopped) wait_for_status 3 15 2;; # wait 15x2s before timeout
+    *) ctl $@;;
+esac

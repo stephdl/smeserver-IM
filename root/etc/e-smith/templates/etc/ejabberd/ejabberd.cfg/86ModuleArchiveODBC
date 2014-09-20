@@ -1,0 +1,17 @@
+{
+
+if (($ejabberd{'Archives'} || 'disabled') eq 'enabled'){
+$OUT .=<<"HERE";
+  ,{mod_archive_odbc, [{database_type, "mysql"},
+                      {default_auto_save, true},
+                      {enforce_default_auto_save, false},
+                      {default_expire, infinity},
+                      {enforce_min_expire, 0},
+                      {enforce_max_expire, infinity},
+                      {replication_expire, 31536000},
+                      {session_duration, 1800},
+                      {wipeout_interval, 86400}]}
+HERE
+}
+}
+

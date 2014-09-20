@@ -1,0 +1,57 @@
+{
+
+my $admin = $ejabberd{'WebAdmin'} || 'disabled';
+my $bind = $ejabberd{'HTTPBind'} || 'disabled';
+my $poll = $ejabberd{'HTTPPoll'} || 'disabled';
+
+my $allowAdmin = ($admin eq 'enabled') ? "allow from $localAccess $externalSSLAccess" : '';
+my $allowBind = ($bind eq 'enabled') ? "allow from all" : '';
+my $allowPoll = ($poll eq 'enabled') ? "allow from all" : '';
+
+if ( $port ne ($modSSL{'TCPPort'} || '443')){
+    $OUT .=<<"EOF";
+
+    #====================================================================
+    # HTTPS redirection for Ejabberd
+    #====================================================================
+
+    RewriteEngine on
+    RewriteRule ^/(.*|\$) https://%{HTTP_HOST}/\$1 \[L,R\]
+
+EOF
+    }
+    else{
+        $OUT .=<<"HERE";
+
+    SSLEngine on
+
+    ProxyPass / http://localhost:5280/
+    ProxyPassReverse / http://localhost:5280/
+
+    <Location />
+        order deny,allow
+        deny from all
+    </Location>
+
+    <Location /admin>
+        order deny,allow
+        deny from all
+        $allowAdmin
+    </Location>
+
+    <Location /http-bind>
+        order deny,allow
+        deny from all
+        $allowBind
+    </Location>
+
+    <Location /http-poll>
+        order deny,allow
+        deny from all
+        $allowPoll
+    </Location>
+
+HERE
+    }
+}
+

@@ -1,0 +1,6 @@
+{
+    $OUT =<<'HERE';
+% Only admins can use configuration interface:
+{access, configure, [{allow, admin}]}.
+HERE
+}

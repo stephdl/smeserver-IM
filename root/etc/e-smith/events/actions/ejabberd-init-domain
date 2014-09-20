@@ -1,0 +1,68 @@
+#!/usr/bin/perl -w
+#----------------------------------------------------------------------
+# copyright (C) 2010-2011 Firewall-Services
+# daniel@firewall-services.com
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+# 
+# Technical support for this program is available from Mitel Networks 
+# Please visit our web site www.mitel.com/sme/ for details.
+#----------------------------------------------------------------------
+
+use strict;
+use warnings;
+use esmith::DomainsDB;
+use esmith::ConfigDB;
+
+my $d = esmith::DomainsDB->open or die "Couldn't open DomainsDB\n";
+my $c = esmith::ConfigDB->open_ro() or die "Couldn't open ConfigDB\n";
+
+my $domain = $c->get('DomainName')->value;
+my $vhost;
+
+$vhost = $d->get("im.$domain");
+
+if (!$vhost){
+    $d->new_record("im.$domain",{
+        type         => 'domain',
+        Content      => 'Primary',
+        Description  => "Instant Messaging",
+        Nameservers  => 'internet',
+        TemplatePath => 'Ejabberd',
+        Removable    => 'yes',
+    });
+
+    unless ( system("/sbin/e-smith/signal-event", "domain-create", "im.$domain") == 0 ){
+        die "Failed to create domain im.$domain\n";
+    }
+}
+
+$vhost = $d->get("jabber.$domain");
+
+if (!$vhost){
+    $d->new_record("jabber.$domain",{
+        type         => 'domain',
+        Content      => 'Primary',
+        Description  => "Client XMPP Jappix",
+        Nameservers  => 'internet',
+        TemplatePath => 'WebAppVirtualHost',
+        DocumentRoot => '/usr/share/jappix',
+        LemonLDAP    => 'enabled'
+    });
+
+    unless ( system("/sbin/e-smith/signal-event", "domain-create", "jabber.$domain") == 0 ){
+        die "Failed to create domain jabber.$domain\n";
+    }
+}

@@ -1,0 +1,9 @@
+{
+
+return "" unless (-x '/usr/bin/make-srv');
+
+$OUT .= "# SRV Records for Ejabberd\n";
+$OUT .= `/usr/bin/make-srv -service _xmpp-server._tcp.$DomainName -target $SystemName.$DomainName -port 5269`;
+$OUT .= `/usr/bin/make-srv -service _xmpp-client._tcp.$DomainName -target $SystemName.$DomainName -port 5222`;
+
+}

@@ -1,0 +1,6 @@
+{
+    $OUT =<<'HERE';
+% Only admins can send announcement messages :
+{access, announce, [{allow, admin}]}.
+HERE
+}

@@ -1,0 +1,13 @@
+
+/var/log/ejabberd/ejabberd.log /var/log/ejabberd/sasl.log \{
+    missingok
+    compress
+    notifempty
+    rotate 5
+    weekly
+    create 0644 ejabberd ejabberd
+    sharedscripts
+    postrotate
+        sudo -u ejabberd -H /sbin/e-smith/ejabberdctl  reopen-log >/dev/null 2>/dev/null || true
+    endscript
+\}

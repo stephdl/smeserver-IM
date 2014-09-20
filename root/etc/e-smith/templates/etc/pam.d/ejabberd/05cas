@@ -1,0 +1,1 @@
+auth    sufficient      pam_cas.so -sxmpp://{$DomainName} -f/etc/pam_cas.conf

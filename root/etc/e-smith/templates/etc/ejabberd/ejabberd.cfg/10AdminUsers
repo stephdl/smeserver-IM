@@ -1,0 +1,12 @@
+{
+    $OUT =<<'HERE';
+% Users that have admin access.
+{acl, admin, {user, "admin"}}.
+HERE
+
+foreach my $user (split(/[;,]/, ($ejabberd{'AdminUsers'} || ''))){
+    $OUT .= "{acl, admin, {user, '$user'}}.\n";
+}
+
+}
+

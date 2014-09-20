@@ -1,0 +1,57 @@
+{
+my $db = ${'ejabberd'}{'DbName'} || 'ejabberd';
+my $user = ${'ejabberd'}{'DbUser'} || 'ejabberd';
+my $pass = ${'ejabberd'}{'DbPassword'} || 'secret';
+
+$OUT .= <<"END";
+#! /bin/sh
+SCHEMA=\$(rpm -ql ejabberd | grep mysql.sql)
+if [ \! -d /var/lib/mysql/$db ]; then
+    # If database doesn't exists, create it and load the schema
+    /usr/bin/mysqladmin create $db
+    /usr/bin/mysql $db < \$SCHEMA
+    for SQL in \$(rpm -qd ejabberd-modules | grep mod_archive_odbc_mysql.sql); do
+        /usr/bin/mysql $db < \$SQL
+    done
+else
+    # If database exists, first drop actual indexes
+    grep -Pi '^CREATE(\ UNIQUE)?\ INDEX' \$SCHEMA | sed -e 's/CREATE/DROP/g' -e 's/(.*)//g' -e 's/USING BTREE //g' -e 's/UNIQUE //g' | /usr/bin/mysql -f $db
+    # and update the database (create missing tables and indexes)
+    sed -r -e 's/CREATE TABLE (.*) \\(/CREATE TABLE IF NOT EXISTS \\1 \\(/gi' \$SCHEMA | /usr/bin/mysql -f $db
+fi
+
+/usr/bin/mysql <<EOF
+USE mysql;
+
+REPLACE INTO user (  
+                     host,
+                     user,
+                     password)
+            VALUES ( 
+                     'localhost',
+                     '$user',
+                     PASSWORD ('$pass'));
+
+
+REPLACE INTO db (  
+                   host,
+                   db,
+                   user,
+                   select_priv, insert_priv, update_priv, delete_priv,
+                   create_priv, alter_priv, index_priv, drop_priv, create_tmp_table_priv,
+                   grant_priv, lock_tables_priv, references_priv)
+          VALUES ( 
+                   'localhost',
+                   '$db',
+                   '$user',
+                   'Y', 'Y', 'Y', 'Y',
+                   'Y', 'Y', 'Y', 'Y', 'Y',
+                   'N', 'Y', 'Y');
+
+FLUSH PRIVILEGES;
+
+EOF
+END
+
+}
+

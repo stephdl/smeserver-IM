@@ -1,0 +1,9 @@
+{
+    $OUT =<<'HERE';
+% Default language for server messages
+HERE
+    $OUT .= '{language, "';
+    $OUT .= substr(${sysconfig}{Language}, 0, 2);
+    $OUT .= '"}.';
+    $OUT .= "\n\n";
+}

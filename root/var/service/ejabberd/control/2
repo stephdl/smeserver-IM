@@ -1,0 +1,5 @@
+#! /bin/sh
+
+test /var/service/ejabberd/ssl/cert.pem -nt ./supervise/pid || exit 0
+sv t .
+

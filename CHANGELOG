@@ -1,0 +1,29 @@
+commit f95caac4a514eafe48984122de1243d7785255cf
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Thu May 24 09:52:29 2012 +0200
+
+    revert mod_muc to mnesia
+
+commit 688069c291c754eb1cbeb6c75c0c821199c043a1
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed May 23 18:46:23 2012 +0200
+
+    Enable more ODBC modules available in Ejabberd 2.1.11
+
+commit 6ae2143deecbba879b1bd5017eb8884c4fd38de2
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Tue Apr 24 12:31:29 2012 +0200
+
+    create log dir /var/log/ejabberd.run
+
+commit 0841925c8e3847ac861dd1ff2c848059c7da69cb
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Fri Mar 30 10:49:57 2012 +0200
+
+    DisplayName in LDAP Roster
+
+commit af6fdb290f8967f248670fbcfab2bb2553bbcb3e
+Author: Daniel Berteaud <daniel@firewall-services.com>
+Date:   Wed Mar 14 22:30:54 2012 +0100
+
+    initial import
