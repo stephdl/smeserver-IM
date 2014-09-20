@@ -36,6 +36,30 @@
         <trans>Instant messaging services access</trans>
     </entry>
     <entry>
+        <base>DESC_ALLOWED_GROUPS</base>
+        <trans>You can restrict access to instant messaging services to a list of groups. If one group is checked, only the members of group(s) selected may use instant messaging. If no group is selected, then all users will use it.</trans>
+    </entry>
+    <entry>
+        <base>ALLOWED_GROUPS</base>
+        <trans>Allowed Groups</trans>
+    </entry>
+    <entry>
+        <base>DESCRIPTION</base>
+        <trans>Description</trans>
+    </entry>
+    <entry>
+        <base>ALLOWED_OR_NOT</base>
+        <trans>Allowed ?</trans>
+    </entry>
+    <entry>
+        <base>LABEL_SHARED_ROSTER</base>
+        <trans>Automatic Contacts</trans>
+    </entry>
+    <entry>
+        <base>DESC_SHARED_ROSTER</base>
+        <trans>If this feature is enabled, users of the system will be automatically added as a contact</trans>
+    </entry>
+    <entry>
         <base>DESC_GATEWAYS</base>
         <trans>You can enable gateways for other instant messaging services. Once registered on a gateway, users will be able to communicate with their contact of this network.</trans>
     </entry>
@@ -77,6 +101,6 @@
     </entry>
     <entry>
         <base>SAVE</base>
-        <trans>Enregistrer</trans>
+        <trans>Save</trans>
     </entry>
 </lexicon>
