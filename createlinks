@@ -20,7 +20,6 @@ templates2events("/etc/e-smith/sql/init/80ejabberd", "bootstrap-console-save");
 #--------------------------------------------------
 
 event_link("ejabberd-init-domain", 'ejabberd-update', "10");
-event_link("ejabberd-init-domain", 'ipasserelle-update', "60");
 event_link("ejabberd-init-domain", 'webapps-update', "60");
 
 safe_symlink("restart", "root/etc/e-smith/events/ejabberd-update/services2adjust/ejabberd");

@@ -1,4 +1,0 @@
-        <auth_cas>on</auth_cas>
-        <cas_server>auth.{$DomainName}</cas_server>
-        <cas_uri>/cas</cas_uri>
-        <cas_cacert>{$pam_cas{'CaCert'} || '/etc/pki/tls/certs/cacert.pem'}</cas_cacert>

@@ -23,7 +23,7 @@ Provides: smeserver-ejabberd
 Requires: ejabberd >= 2.1.11
 Requires: ejabberd-modules
 Requires: smeserver-webapps-common
-Requires: smeserver-jappix >= 0.1-3
+#Requires: smeserver-jappix >= 0.1-3
 Requires: smeserver-pam_cas
 
 %description
