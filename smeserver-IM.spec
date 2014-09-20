@@ -25,7 +25,7 @@ Requires: ejabberd-modules
 Requires: smeserver-webapps-common
 Requires: smeserver-jappix >= 0.1-3
 Requires: smeserver-pam_cas
-Requires: smeserver-lemonldap-ng
+
 %description
 Meta package to configure Instant Messaging features
 on your SME Server
