@@ -49,20 +49,3 @@ if (!$vhost){
     }
 }
 
-$vhost = $d->get("jabber.$domain");
-
-if (!$vhost){
-    $d->new_record("jabber.$domain",{
-        type         => 'domain',
-        Content      => 'Primary',
-        Description  => "Client XMPP Jappix",
-        Nameservers  => 'internet',
-        TemplatePath => 'WebAppVirtualHost',
-        DocumentRoot => '/usr/share/jappix',
-        LemonLDAP    => 'enabled'
-    });
-
-    unless ( system("/sbin/e-smith/signal-event", "domain-create", "jabber.$domain") == 0 ){
-        die "Failed to create domain jabber.$domain\n";
-    }
-}

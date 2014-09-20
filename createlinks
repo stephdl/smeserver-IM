@@ -11,14 +11,13 @@ templates2events("/etc/ejabberd/ejabberd.cfg",  qw(
 templates2events("/etc/pam.d/ejabberd", qw(ejabberd-update bootstrap-console-save));
 templates2events("/etc/logrotate.d/ejabberd", qw(ejabberd-update bootstrap-console-save));
 templates2events("/etc/httpd/conf/httpd.conf", "ejabberd-update");
-templates2events("/etc/jappix/main.xml", "ejabberd-update");
 templates2events("/etc/rc.d/init.d/masq", "ejabberd-update");
 templates2events("/etc/e-smith/sql/init/80ejabberd", "bootstrap-console-save");
 
 #--------------------------------------------------
 # ejabberd-update actions
 #--------------------------------------------------
-
+event_link("ejabberd-init-domain", 'bootstrap-console-save', "60");
 event_link("ejabberd-init-domain", 'ejabberd-update', "10");
 event_link("ejabberd-init-domain", 'webapps-update', "60");
 

@@ -1,5 +1,5 @@
 %define version 0.2.16
-%define release 1
+%define release 2
 %define name smeserver-IM
 
 
