@@ -4,7 +4,7 @@
         <trans>Instant messaging configuration</trans>
     </entry>	
     <entry>
-        <base>DESCRIPTION</base>
+        <base>PAGE_DESCRIPTION</base>
         <trans>This panel lets you configure your instant messaging service.</trans>
     </entry>
     <entry>
